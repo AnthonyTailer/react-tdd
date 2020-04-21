@@ -16,7 +16,7 @@ const setup = (props = {}, state = null) => {
 };
 
 /**
- * Return ShallowWrapper contaning node(s) with the giver data-test value.
+ * Return ShallowWrapper containing node(s) with the giver data-test value.
  * @param {ShallowWrapper} wrapper - Enzyme shallow wrapper to search within.
  * @param {string} val - Value of data-test attribute for search.
  * @returns {ShallowWrapper}
