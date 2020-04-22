@@ -67,4 +67,3 @@ describe('if are words guessed', () => {
     expect(guessedWordsNode.length).toBe(guessedWords.length)
   })
 })
-
