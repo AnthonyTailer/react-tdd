@@ -1,8 +1,9 @@
-import checkPropTypes from 'check-prop-types'
-import { createStore } from 'redux'
-
-import { Provider } from 'react-redux'
 import React from 'react'
+import checkPropTypes from 'check-prop-types'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+
+import { middlewares } from '../src/store/configureStore'
 import rootReducer from '../src/store/reducers'
 
 /**
@@ -33,7 +34,10 @@ export const checkProps = (component, conformingProps) => {
  * @function storeFactory
  * @returns {Store} - Redux Store
  */
-export const storeFactory = initialState => createStore(rootReducer, initialState)
+export const storeFactory = initialState => {
+  const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)
+  return createStoreWithMiddleware(rootReducer, initialState)
+}
 
 /**
  * Create a test Provider passing redux store
