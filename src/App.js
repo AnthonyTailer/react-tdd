@@ -7,10 +7,10 @@ import GuessedWords from './components/GuessedWords/GuessedWords'
 import Input from './components/Input/Input'
 import { getSecretWord } from './store/actions'
 
-class App extends React.Component {
+export class UnconnectedApp extends React.Component {
   componentDidMount() {
-    const { getSecretWord } = this.props
-    getSecretWord()
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.getSecretWord()
   }
 
   render() {
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
+UnconnectedApp.propTypes = {
   success: PropTypes.bool.isRequired,
   guessedWords: PropTypes.arrayOf(
     PropTypes.shape({
@@ -35,9 +35,10 @@ App.propTypes = {
     })
   ),
   secretWord: PropTypes.string.isRequired,
+  getSecretWord: PropTypes.func.isRequired,
 }
 
-App.defaultProps = {
+UnconnectedApp.defaultProps = {
   guessedWords: [{ guessedWord: 'train', letterMatchCount: 3 }],
 }
 
@@ -47,8 +48,4 @@ const mapStateToProps = state => ({
   secretWord: state.secretWord,
 })
 
-const mapDispatchToProps = dispatch => {
-  dispatch(getSecretWord())
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, { getSecretWord })(UnconnectedApp)
