@@ -4,16 +4,36 @@ import { connect } from 'react-redux'
 import { guessWord } from '../../store/actions'
 
 export class UnconnectedInput extends Component {
-  guessWordHandler() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      inputBoxValue: '',
+    }
+  }
+
+  guessWordHandler(ev) {
+    ev.preventDefault()
     const { guessWord: guessWordFunc } = this.props
-    guessWordFunc()
+    const { inputBoxValue } = this.state
+    if (inputBoxValue && inputBoxValue.length > 0) {
+      guessWordFunc(inputBoxValue)
+    }
   }
 
   render() {
     const { success } = this.props
+    const { inputBoxValue } = this.state
+
     const content = success ? null : (
       <form className="form-inline">
-        <input data-test="input-box" className="mb-2 mx-sm-3" type="text" placeholder="enter guess" />
+        <input
+          data-test="input-box"
+          className="mb-2 mx-sm-3"
+          type="text"
+          placeholder="enter guess"
+          value={inputBoxValue}
+          onChange={e => this.setState({ inputBoxValue: e.target.value })}
+        />
         <button
           data-test="submit-button"
           className="btn btn-primary mb-2"
