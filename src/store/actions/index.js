@@ -28,9 +28,10 @@ export const guessWord = guessedWord => (dispatch, getState) => {
 }
 
 export const getSecretWord = () => dispatch =>
-  axios.get('http://localhost:3030').then(response => {
+  axios.get('https://random-word-api.herokuapp.com/word').then(response => {
+    const [secretWord] = response.data
     dispatch({
       type: actionTypes.SET_SECRET_WORD,
-      payload: response.data,
+      payload: secretWord,
     })
   })
