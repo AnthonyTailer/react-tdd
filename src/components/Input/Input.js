@@ -17,6 +17,7 @@ export class UnconnectedInput extends Component {
     const { inputBoxValue } = this.state
     if (inputBoxValue && inputBoxValue.length > 0) {
       guessWordFunc(inputBoxValue)
+      this.setState({ inputBoxValue: '' })
     }
   }
 
@@ -38,7 +39,8 @@ export class UnconnectedInput extends Component {
           data-test="submit-button"
           className="btn btn-primary mb-2"
           type="submit"
-          onClick={this.guessWordHandler.bind(this)}>
+          onClick={this.guessWordHandler.bind(this)}
+        >
           Submit
         </button>
       </form>

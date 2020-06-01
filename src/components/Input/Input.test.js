@@ -100,4 +100,7 @@ describe('tests Submit actions', () => {
     const guessWordArgs = guessWordMock.mock.calls[0][0]
     expect(guessWordArgs).toBe(guessedWord)
   })
+  test('input box clears on submit', () => {
+    expect(wrapper.state('inputBoxValue')).toBe('')
+  })
 })
