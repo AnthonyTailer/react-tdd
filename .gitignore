@@ -1,0 +1,40 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# jotto redux
+/jotto-jest-enzyme-redux/node_modules
+/jotto-jest-enzyme-redux/build
+/jotto-jest-enzyme-redux/.history
+/jotto-jest-enzyme-redux/.idea
+/jotto-jest-enzyme-redux/coverage
+
+# jotto hooks context
+/jotto-jest-enzyme-hooks-context/node_modules
+/jotto-jest-enzyme-hooks-context/build
+/jotto-jest-enzyme-hooks-context/.history
+/jotto-jest-enzyme-hooks-context/.idea
+/jotto-jest-enzyme-hooks-context/coverage
+
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/.history
+/.idea
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
