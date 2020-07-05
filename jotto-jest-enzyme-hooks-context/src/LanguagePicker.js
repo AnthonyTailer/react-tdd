@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 
 export default function LanguagePicker({ setLanguage }) {
   const languages = [
-    { code: 'en', flag: `https://catamphetamine.gitlab.io/country-flag-icons/3x2/us.svg` },
-    { code: 'pt', flag: `https://catamphetamine.gitlab.io/country-flag-icons/3x2/br.svg` },
+    { code: 'en', flag: `https://catamphetamine.gitlab.io/country-flag-icons/3x2/US.svg` },
+    { code: 'pt', flag: `https://catamphetamine.gitlab.io/country-flag-icons/3x2/BR.svg` },
   ]
   const languageIcons = languages.map(lang => (
-    <span key={lang.code} data-test="language-icon" onClick={() => setLanguage(lang.code)}>
-       <img src={lang.flag} width={24} height={16} />
-    </span>
+    <button key={lang.code} data-test="language-icon" onClick={() => setLanguage(lang.code)}>
+       <img alt={`language ${lang.code}`}  src={lang.flag} width={24} />
+    </button>
   ))
 
   return (

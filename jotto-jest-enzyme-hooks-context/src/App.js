@@ -46,7 +46,7 @@ function App() {
   }
 
   return (
-    <div className="App" data-test="component-app" >
+    <div className="container" data-test="component-app" >
       <h1>Jotto Hooks</h1>
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
