@@ -3,7 +3,9 @@ import './App.css'
 import hookActions from './actions/hookActions'
 import Input from './Input'
 import languageContext from './contexts/languageContext'
+import successContext from './contexts/successContext'
 import LanguagePicker from './LanguagePicker'
+import Congrats from './Congrats'
 
 /**
  * Reducer to update state, called automatically by dispatch
@@ -18,6 +20,8 @@ function reducer(state, action) {
       return { ...state, secretWord: action.payload }
     case "setLanguage":
       return { ...state, language: action.payload }
+    case "setSuccess":
+      return { ...state, success: action.payload }
     default:
       throw new Error(`Invalid action type: ${action.type}`)
   }
@@ -25,10 +29,11 @@ function reducer(state, action) {
 
 function App() {
   // const [secretWord, setSecretWord] = React.useState('')
-  const [state, dispatch] = React.useReducer(reducer, { secretWord: null, language: 'en' })
+  const [state, dispatch] = React.useReducer(reducer, { secretWord: null, language: 'en', success: false })
 
   const setSecretWord = (secretWord) => dispatch({ type: 'setSecretWord', payload: secretWord })
   const setLanguage = (language) => dispatch({ type: 'setLanguage', payload: language })
+  const setSuccess = (success) => dispatch({ type: 'setSuccess', payload: success })
 
   React.useEffect(() => {
     hookActions.getSecretWord(setSecretWord)
@@ -50,7 +55,11 @@ function App() {
       <h1>Jotto Hooks</h1>
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
-        <Input secretWord={state.secretWord} />
+        <successContext.SuccessProvider>
+          <Congrats />
+          <Input secretWord={state.secretWord} />
+        </successContext.SuccessProvider>
+        {/* <GuessedWords/> */}
       </languageContext.Provider>
     </div>
   )
